@@ -92,5 +92,17 @@ class Product extends BaseDataClass{
     protected $table = "product";    
 }
 
+class OrderTable extends BaseDataClass{
+    protected $table = "order_table";    
+}
+
+class OrderProduct extends BaseDataClass{
+    protected $table = "order_product";    
+}
+
+class Client extends BaseDataClass{
+    protected $table = "client";    
+}
+
 
 
