@@ -1,1 +1,3 @@
-.vscode
+.vsco
+*.db
+*.json
