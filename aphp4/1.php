@@ -1,7 +1,7 @@
 <?php
 include "2.php";
 
-
+$pdo = new PDO("sqlite:./database.db");
 
 $sql = [
     'CREATE TABLE IF NOT EXISTS shop (
@@ -22,10 +22,10 @@ $sql = [
     'CREATE TABLE IF NOT EXISTS order_table (
         id INTEGER PRIMARY KEY,
         created_at DATETIME,
-        customer_name TEXT,
-        seller_name TEXT,
         shop_id INTEGER,
-        FOREIGN KEY (shop_id) REFERENCES shop(id)
+        client_id Integer,
+        FOREIGN KEY (shop_id) REFERENCES shop(id),
+        FOREIGN KEY (client_id) REFERENCES client(id)
     )',
 
     'CREATE TABLE IF NOT EXISTS order_product (
@@ -58,10 +58,10 @@ $sql = [
         ('Товар 5', 7.99, 150, 3),
         ('Товар 6', 12.99, 100, 3)",
 
-    "INSERT INTO order_table (created_at, customer_name, seller_name, shop_id) VALUES
-        ('2023-04-11 10:00:00', 'Иванов Иван', 'Петров Петр', 1),
-        ('2023-04-11 11:00:00', 'Сидоров Сидор', 'Иванов Иван', 2),
-        ('2023-04-11 12:00:00', 'Петров Петр', 'Сидоров Сидор', 3);",
+    "INSERT INTO order_table (created_at, shop_id, client_id) VALUES
+        ('2023-04-11 10:00:00', 1, 1),
+        ('2023-04-11 11:00:00', 2, 2),
+        ('2023-04-11 12:00:00', 3, 3);",
 
     "INSERT INTO order_product (order_id, product_id, quantity, price) VALUES
         (1, 1, 2, 10.99),
@@ -81,7 +81,7 @@ foreach ($sql as $command) {
 }
 
 
-// $pdo = new PDO("sqlite:./database.db");
+
 
 // $shop = new Shop($pdo);
 // $shop->insert(['name', 'address'], ['Магазин 4', 'ул. Колотушкина 4']) ;
