@@ -1,3 +1,11 @@
 .vsco
 *.db
 *.json
+*.txt
+*.nix
+*.res
+*.replit
+binary*
+modules*
+latest*
+.gitignore
